@@ -1,21 +1,31 @@
 % En este archivo se incluyen las graficas de simulación del articulo del 
 % tanque
-%% CONJUNTOS DIFUSOS
+%% CONJUNTOS DIFUSOS Y BOOLEANOS
+%Conjuntos Difusos
 U1=[-5:0.1:5];
 U2=[-5:0.1:5];
 v1=U1/4.*(U1>0).*(U1<4)+(U1>=4);
 v2=-U1/4.*((-U1)>0).*((-U1)<4)+((-U1)>=4);
 v3=(U2/4+0.5).*(U2>-2).*(U2<2)+(U2>=2);
-figure(19),plot(U1,[v1;v2],'linewidth',2),title('Conceptos asociados al error','FontSize',16),
-xlabel('Error [cm]','FontSize',12),ylabel('Pertenencia','FontSize',12),legend('\mu_{P}(e)','\mu_{N}(e)');
+%Conjuntos Booleanos
+b1=U1>2;
+b2=U1<-2;
+b3=U2>0;
+%Graficas
+%pos
+figure(19),plot(U1,[b1;b2],':','linewidth',2),hold on;
+plot(U1,[v1;v2],'linewidth',2),title('Conceptos asociados al error','FontSize',20),
+xlabel('Error [cm]','FontSize',20),ylabel('Pertenencia','FontSize',20),legend('Boolean \mu_{P}(e)','Boolean \mu_{N}(e)','\mu_{P}(e)','\mu_{N}(e)');
 h=legend('Location', 'Best');
 set(h,'FontSize',12);
 axis(axis+[0 0 -0.1 0.1]);
-figure(31),plot(U1,[v3],'linewidth',2),title('Conceptos asociados a la derivada del error','FontSize',16),
-xlabel('Derivada error [cm/s]','FontSize',12),ylabel('Pertenencia','FontSize',12),legend('\mu_{P}(de/dt)');
+%vel
+figure(31),plot(U1,[v3],'linewidth',2),title('Conceptos asociados a la derivada del error','FontSize',20),
+xlabel('Derivada error [cm/s]','FontSize',20),ylabel('Pertenencia','FontSize',20),legend('\mu_{P}(de/dt)');
 h=legend('Location', 'Best');
 set(h,'FontSize',12);
 axis(axis+[0 0 -0.1 0.1]);
+
 %% SUPERFICIES DE CONTROL
 U1=[-10:0.6:10];
 U2=[-10:0.6:10];
